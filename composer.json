@@ -1,0 +1,18 @@
+{
+    "name": "bertrama/php-pm-drupal-seven-adapter",
+    "require": {
+        "php-pm/php-pm": "dev-master#19164bdde107f0e724e22fe9791ceaf07bc35b65",
+        "php-pm/httpkernel-adapter": "dev-master#09fb0ae741f29761e129becc1971790c6cf1fe6e",
+	"psr/http-message": "dev-master#85d63699f0dbedb190bbd4b0d2b9dc707ea4c298",
+	"psr/log": "dev-master#d8e60a5619fff77f9669da8997697443ef1a1d7e",
+	"react/dns": "dev-master#62f6201e487df8add209cc42f05ffca33ee1ba05",
+	"react/http": "dev-master#545723837ceed39cbd81e479ab98198bb2c5893b",
+	"react/socket": "dev-master#ce015ec5879b96f5d30905f035f223aa85013fcc",
+	"symfony/console": "dev-master#eac900eacbefd68a29fa1f183590568cb5f6ffd5"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPPM\\": ""
+        }
+    }
+}
