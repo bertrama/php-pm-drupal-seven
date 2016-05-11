@@ -109,12 +109,12 @@ class DrupalSeven implements BootstrapInterface {
     'og_user_access_alter',
     '_node_revision_access',
     'theme_get_registry',
+    'drupal_add_css',
   ];
 
   private static $reset = [
     'path_is_admin',
     'arg',
-    'drupal_add_css',
     'drupal_add_js',
     'drupal_add_js:jquery_added',
     'drupal_add_library',
@@ -148,11 +148,13 @@ class DrupalSeven implements BootstrapInterface {
     $this->appenv = $appenv;
     $this->env    = $env;
     $_SERVER['argc'] = NULL;
+    $_SERVER['SCRIPT_NAME'] = '/install.php';
     define('DRUPAL_ROOT', getcwd());
     $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
     require_once(DRUPAL_ROOT . '/includes/bootstrap.inc');
     drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
     $this->defaultHeaders = headers_list();
+    db_query("set wait_timeout = 28800");
   }
 
   public function reset() {
