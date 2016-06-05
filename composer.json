@@ -1,5 +1,6 @@
 {
     "name": "bertrama/php-pm-drupal-seven-adapter",
+    "version": "0.0.1",
     "require": {
         "php-pm/php-pm": "dev-master#19164bdde107f0e724e22fe9791ceaf07bc35b65",
         "php-pm/httpkernel-adapter": "dev-master#09fb0ae741f29761e129becc1971790c6cf1fe6e",
