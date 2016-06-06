@@ -180,11 +180,16 @@ class DrupalSeven implements BootstrapInterface {
   }
 
   private function execute() {
-    ob_start();
-    ob_start();
-    menu_execute_active_handler($this->source);
-    $this->content .= ob_get_clean();
-    $this->content .= ob_get_clean();
+    if (file_exists($this->path)) {
+      $this->content = file_get_contents($this->path);
+    }
+    else {
+      ob_start();
+      ob_start();
+      menu_execute_active_handler($this->source);
+      $this->content .= ob_get_clean();
+      $this->content .= ob_get_clean();
+    }
   }
 
   private function setup(Request $request) {
