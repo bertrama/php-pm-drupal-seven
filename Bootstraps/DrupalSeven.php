@@ -149,10 +149,6 @@ class DrupalSeven implements BootstrapInterface {
     $this->env    = $env;
     $_SERVER['argc'] = NULL;
     $_SERVER['SCRIPT_NAME'] = '/install.php';
-    $_SERVER['HTTP_HOST']   = getenv('HTTP_HOST');
-    $_SERVER['SERVER_NAME'] = getenv('HTTP_HOST');
-    $_SERVER['HTTPS'] = getenv('HTTPS');
-
     define('DRUPAL_ROOT', getcwd());
     $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
     require_once(DRUPAL_ROOT . '/includes/bootstrap.inc');
@@ -193,7 +189,15 @@ class DrupalSeven implements BootstrapInterface {
   }
 
   private function setup(Request $request) {
-    $this->path = ltrim($request->getUrl()->getPath(), '/');
+    $url = $request->getUrl();
+    if ($url->getScheme() == 'https') {
+      $_SERVER['HTTPS'] = 'on';
+    }
+    else {
+      unset($_SERVER['HTTPS']);
+    }
+    $_SERVER['HTTP_HOST'] = $_SERVER['SERVER_NAME'] = $url->getHost();
+    $this->path = ltrim($url->getPath(), '/');
     $this->source = drupal_get_normal_path($this->path);
     if (empty($this->source)) {
       $this->source = variable_get('site_frontpage', 'node');
